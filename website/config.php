@@ -15,8 +15,8 @@ function config($key = '')
             'website/content/products.php' => 'Products',
             'website/content/contact.php' => 'Contact',
         ],
-        'template_path' => 'website/template',
-        'content_path' => 'website/content',
+        'template_path' => 'template',
+        'content_path' => 'content',
         'pretty_uri' => true,
         'version' => 'v2.0',
     ];
