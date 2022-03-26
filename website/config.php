@@ -10,13 +10,13 @@ function config($key = '')
     $config = [
         'name' => 'Simple PHP Website',
         'nav_menu' => [
-            '' => 'Home',
-            'content/about-us.php' => 'About Us',
-            'content/products.php' => 'Products',
-            'content/contact.php' => 'Contact',
+            'website/content/home.php' => 'Home',
+            'website/content/about-us.php' => 'About Us',
+            'website/content/products.php' => 'Products',
+            'website/content/contact.php' => 'Contact',
         ],
-        'template_path' => 'template',
-        'content_path' => 'content',
+        'template_path' => 'website/template',
+        'content_path' => 'website/content',
         'pretty_uri' => true,
         'version' => 'v2.0',
     ];
