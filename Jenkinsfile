@@ -11,8 +11,7 @@ pipeline {
 	stage('DockerInstall'){
 	  steps{
 	    echo "install docker on worker machine"
-		sh 'ansible-playbook -i /etc/ansible/hosts $WORKSPACE/Docker.yml'
-	  
+	    sh 'ansible-playbook -i /etc/ansible/hosts $WORKSPACE/Docker.yml'
 	  }
     }
 	stage('build images and push to docker hub'){
@@ -24,7 +23,10 @@ pipeline {
          }
 	  }
     }
-  
-  
+    stage('deploy docker container'){
+	  steps{
+	    sh 'ansible-playbook -i /etc/ansible/hosts $WORKSPACE/deployContainer.yml --extra-vars "build=$BUILD_NUMBER"'
+	  }
+    }
   }
 }
