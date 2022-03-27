@@ -1,15 +1,15 @@
 - hosts: all
   ignore_errors : yes
   become: yes
-  tasks: 
+  tasks:
     - name: remove any previous containers
-      shell: | 
-         if [ `docker ps | grep -o myapp | wc -l` -gt 0 ]; then  
-            docker stop `docker ps | grep -o myapp`
-         else 
+      shell: |
+         if [ `docker ps | grep -o myapp | wc -l` -gt 0 ]; then
+            docker rm -f `docker ps | grep -o myapp`
+         else
             echo "No running container found"
          fi
     - name: deploy container
-      command: docker run -d --name myapp -P amitnikam/phpsampleapp:v{{ build }}
+      command: docker run -d --name myapp -P amitnikam/phpsampleapp:v{{build}}
       register : doccontid
     - debug : msg="{{doccontid.stdout}}"
