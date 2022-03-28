@@ -8,7 +8,7 @@ pipeline {
 	  
 	  }
     }
-	stage('DockerInstall'){
+	stage('DockerInstall if not exist'){
 	  steps{
 	    echo "install docker on worker machine"
 	    sh 'ansible-playbook -i /etc/ansible/hosts $WORKSPACE/Docker.yml'
