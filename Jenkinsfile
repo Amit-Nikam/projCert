@@ -17,7 +17,7 @@ pipeline {
 	stage('build images and push to docker hub'){
 	  steps{
 	    withDockerRegistry(credentialsId: 'DOCKER_LOGIN', url: 'https://index.docker.io/v1/') {
-        sh '''cd $WORKSPACE
+              sh '''cd $WORKSPACE
               docker build --file Dockerfile --tag docker.io/amitnikam/phpsampleapp:v$BUILD_NUMBER .
               docker push docker.io/amitnikam/phpsampleapp:v$BUILD_NUMBER'''
          }
