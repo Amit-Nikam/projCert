@@ -10,6 +10,6 @@
             echo "No running container found"
          fi
     - name : deploy container
-      shell : docker run -d --name myapp -P amitnikam/phpsampleapp:v{{build}}
+      shell : docker run -d --name myapp -p 32768:80 amitnikam/phpsampleapp:v{{build}}
       register : doccontid
     - debug : msg="{{doccontid.stdout}}"
