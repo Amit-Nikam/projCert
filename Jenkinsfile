@@ -8,13 +8,13 @@ pipeline {
 	  
 	  }
     }
-	stage('DockerInstall if not exist'){
+	stage('Install Docker if not exist'){
 	  steps{
 	    echo "install docker on worker machine"
 	    sh 'ansible-playbook -i /etc/ansible/hosts $WORKSPACE/Docker.yml'
 	  }
     }
-	stage('build images and push to docker hub'){
+	stage('Build images and push to Docker Hub'){
 	  steps{
 	    withDockerRegistry(credentialsId: 'DOCKER_LOGIN', url: 'https://index.docker.io/v1/') {
               sh '''cd $WORKSPACE
@@ -23,7 +23,7 @@ pipeline {
          }
 	  }
     }
-    stage('deploy docker container'){
+    stage('Deploy Docker Container'){
 	  steps{
 	    sh 'ansible-playbook -i /etc/ansible/hosts $WORKSPACE/deployContainer.yml --extra-vars "build=$BUILD_NUMBER"'
 	  }
